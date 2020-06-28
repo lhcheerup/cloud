@@ -1,0 +1,169 @@
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.authentication_user');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.authentication_user') (Id,Email,EmailConfirmed,PasswordHash,securityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,IsDeleted,UserName,ApplyExperienceCodeId,LoginDateUtc,IsTest,CreateDateUtc,FirstName,LastName,Role,Type,DistrictId,AccountOwner,RegisterIP,RegisterCountry,RegisterCity,RegisterZip,TempPassword,AccountType,TempPasswordExpiredAtUtc,Language,registSwitchChoose)
+SELECT Id,Email,EmailConfirmed,PasswordHash,securityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,IsDeleted,UserName,ApplyExperienceCodeId,LoginDateUtc,IsTest,CreateDateUtc,FirstName,LastName,Role,Type,DistrictId,AccountOwner,RegisterIP,RegisterCountry,RegisterCity,RegisterZip,TempPassword,AccountType,TempPasswordExpiredAtUtc,Language,registSwitchChoose from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.authentication_user;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.authentication_user_profile');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.authentication_user_profile') (UserId,AvatarMediaId,Credits,DisplayName,PrimaryEmail)
+SELECT UserId,AvatarMediaId,Credits,DisplayName,PrimaryEmail from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.authentication_user_profile;
+GO
+
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.contents_action');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.contents_action') (Id,Data,UserId,UtcDate,ObjectId,Action,ObjectType)
+ SELECT Id,Data,UserId,UtcDate,ObjectId,Action,ObjectType from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.contents_action;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.contents_enrollment');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.contents_enrollment') (Gender,ArchivedAtUtc,Id,Version,PrivatePhoto,IsGraduated,WithdrawnDate,sourceGroupId,IsActived,FirstName,CreateAtUtc,IsDeleted,DisplayName,ArchivedGroupId,BirthDate,GroupId,AvatarMediaId,LastName,MiddleName,IsInactive,EnrollmentDate,Email,PhoneNumber)
+ SELECT Gender,ArchivedAtUtc,Id,Version,PrivatePhoto,IsGraduated,WithdrawnDate,sourceGroupId,IsActived,FirstName,CreateAtUtc,IsDeleted,DisplayName,ArchivedGroupId,BirthDate,GroupId,AvatarMediaId,LastName,MiddleName,IsInactive,EnrollmentDate,Email,PhoneNumber from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.contents_enrollment;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.contents_enrollment_score');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.contents_enrollment_score') (DomainId,Id,CreateByUserId,Comment,NoteId,EnrollmentId,CreateAtUtc,LevelId)
+ SELECT DomainId,Id,CreateByUserId,Comment,NoteId,EnrollmentId,CreateAtUtc,LevelId from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.contents_enrollment_score;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.enrollment_period');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.enrollment_period') (UpdateAtUtc,isActived,Id,CreateAtUtc,EnrollmentId,Alias,FromAtLocal,ToAtLocal,isNew,DomainId)
+SELECT UpdateAtUtc,isActived,Id,CreateAtUtc,EnrollmentId,Alias,FromAtLocal,ToAtLocal,isNew,DomainId from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.enrollment_period;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.enrollments_metadata');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.enrollments_metadata') (Id,MetaValue,MetaKey,EnrollmentId)
+ SELECT Id,MetaValue,MetaKey,EnrollmentId from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.enrollments_metadata;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.events_event_action');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.events_event_action') (Id,EventId,UserId,EnrollmentId,Action,IsEmailNotify,IsAppNotify,CreateTime,Content,Email)
+SELECT Id,EventId,UserId,EnrollmentId,Action,IsEmailNotify,IsAppNotify,CreateTime,Content,Email from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.events_event_action;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.events_eventenrollment');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.events_eventenrollment') (EventId,EnrollmentId)
+ SELECT EventId,EnrollmentId from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.events_eventenrollment;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.inkinds_report');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.inkinds_report') (Id,ActivityTypeId,ParentId,ParentSignatureId,EnrollmentId,GroupId,CenterId,AgencyId,RateValue,RateUnit,IsCustom,ActivityNumber,ActivityDescription,DomainName,DomainAbbreviation,sourceName,ParentComment,ActivityDate,ApproveStatus,ApproveComment,ApproveUserId,ApproveUserName,ApproveSignatureId,ApproveAtUtc,CreateAtUtc,UpdateAtUtc,IsDeleted,Value,Unit,IsDraft,showDomain,showSource,ActivityGroupId)
+ SELECT Id,ActivityTypeId,ParentId,ParentSignatureId,EnrollmentId,GroupId,CenterId,AgencyId,RateValue,RateUnit,IsCustom,ActivityNumber,ActivityDescription,DomainName,DomainAbbreviation,sourceName,ParentComment,ActivityDate,ApproveStatus,ApproveComment,ApproveUserId,ApproveUserName,ApproveSignatureId,ApproveAtUtc,CreateAtUtc,UpdateAtUtc,IsDeleted,Value,Unit,IsDraft,showDomain,showSource,ActivityGroupId from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.inkinds_report;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.libraries_ip_v4');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.libraries_ip_v4') (IpFrom,IpTo,CountryCode,CountryName,RegionName,CityName,Latitude,Longitude,ZipCode,TimeZone)
+SELECT IpFrom,IpTo,CountryCode,CountryName,RegionName,CityName,Latitude,Longitude,ZipCode,TimeZone from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.libraries_ip_v4;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.medias_book_publish');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.medias_book_publish') (Lccn,YearPublished,IsbnBorn,Id,PageCount,BookId,Press,Isbn)
+ SELECT Lccn,YearPublished,IsbnBorn,Id,PageCount,BookId,Press,Isbn from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.medias_book_publish;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.medias_booksubtopic');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.medias_booksubtopic') (BookId,TopicId)
+SELECT BookId,TopicId from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.medias_booksubtopic;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.medias_media');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.medias_media') (FileType,MediumImgPath,FileName,CreateAtUtc,Width,Height,snapshotPath,ProcessedImgPath,Id,MimeType,RelativePath,AnnexType,LocalId,CreateByUserId,size,smallImgPath,IsHaveMedium,IsHaveSmall,VoiceTime)
+ SELECT FileType,MediumImgPath,FileName,CreateAtUtc,Width,Height,snapshotPath,ProcessedImgPath,Id,MimeType,RelativePath,AnnexType,LocalId,CreateByUserId,size,smallImgPath,IsHaveMedium,IsHaveSmall,VoiceTime from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.medias_media;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.medias_share_record');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.medias_share_record') (NoteId,MediaType,BookData,VideoData,PushId,Id,EnrollmentId,CreateAtUtc,BookId,OriginId,CreateAtLocal,VideoId)
+SELECT NoteId,MediaType,BookData,VideoData,PushId,Id,EnrollmentId,CreateAtUtc,BookId,OriginId,CreateAtLocal,VideoId from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.medias_share_record;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.medias_watch_record');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.medias_watch_record') (UserId,Id,Duration,CreateAtUtc,shareId,UpdateAtUtc)
+SELECT UserId,Id,Duration,CreateAtUtc,shareId,UpdateAtUtc from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.medias_watch_record;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.messages_usermessage');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.messages_usermessage') (Id,Receiver,ReceiveType,IsRead,ReadAtUtc,ReadAtLocal,MessageId,ReceiveAtUtc,ReceiveAtLocal,IsDeleted,AgencyId,CenterId,GroupId,HasGeneratedLog)
+SELECT Id,Receiver,ReceiveType,IsRead,ReadAtUtc,ReadAtLocal,MessageId,ReceiveAtUtc,ReceiveAtLocal,IsDeleted,AgencyId,CenterId,GroupId,HasGeneratedLog from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.messages_usermessage;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.notes_domain_transfer_record');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.notes_domain_transfer_record') (NoteId,DomainId,FrameworkId,CreateAtUtc,Id)
+SELECT NoteId,DomainId,FrameworkId,CreateAtUtc,Id from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.notes_domain_transfer_record;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.notes_note');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.notes_note') (Id,Name,Payload,ThumbnailPath,Type,FromAtLocal,ToAtLocal,IsCopiedToActivity,CreateAtLocal,CreateAtUtc,UpdateAtLocal,UpdateAtUtc,IsDeleted,UpdateByUserId,IsFavorite,LocalId,CopyId,FromCopyId,Log,CreateByUserId,ApproveStatus,ApproveDescription,IsHidden,Lang,LastScore,OneNote,IsDefault,batchAddId,batchAddType)
+SELECT Id,Name,Payload,ThumbnailPath,Type,FromAtLocal,ToAtLocal,IsCopiedToActivity,CreateAtLocal,CreateAtUtc,UpdateAtLocal,UpdateAtUtc,IsDeleted,UpdateByUserId,IsFavorite,LocalId,CopyId,FromCopyId,Log,CreateByUserId,ApproveStatus,ApproveDescription,IsHidden,Lang,LastScore,OneNote,IsDefault,batchAddId,batchAddType from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.notes_note;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.notes_notedomain');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.notes_notedomain') (DomainId,NoteId)
+SELECT DomainId,NoteId from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.notes_notedomain;
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.notes_noteenrollment') (NoteId,EnrollmentId)
+ SELECT NoteId,EnrollmentId from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.notes_noteenrollment;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.notes_notemedia');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.notes_notemedia') (NoteId,MediaId)
+ SELECT NoteId,MediaId from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.notes_notemedia;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.notes_notemetadata');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.notes_notemetadata') (Id,NoteId,MetaKey,MetaValue)
+ SELECT Id,NoteId,MetaKey,MetaValue from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.notes_notemetadata;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.notes_notetag');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.notes_notetag') (TagId,NoteId)
+ SELECT TagId,NoteId from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.notes_notetag;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.notification_device');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.notification_device') (Id,UserId,DeviceToken,EndpointArn,Platform,Language,CreateAtUtc,UpdateAtUtc,IsDeleted,DeviceId)
+ SELECT Id,UserId,DeviceToken,EndpointArn,Platform,Language,CreateAtUtc,UpdateAtUtc,IsDeleted,DeviceId from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.notification_device;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.records_update_period');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.records_update_period') (Id,GroupId,EnrollmentId,PeriodId,Type,From,To,CreateAtUtc)
+ SELECT Id,GroupId,EnrollmentId,PeriodId,Type,From,To,CreateAtUtc from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.records_update_period;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.reports_sent_record');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.reports_sent_record') (Id,sentAtUtc,CenterId)
+ SELECT Id,sentAtUtc,CenterId from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.reports_sent_record;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.scores_score_history');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.scores_score_history') (EnrollmentId,LevelId,CreateAtUtc,NoteId,Comment,CreateByUserId,DomainId,Id)
+SELECT EnrollmentId,LevelId,CreateAtUtc,NoteId,Comment,CreateByUserId,DomainId,Id from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.scores_score_history;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.statistics_enrollments__notesscoremeasures');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.statistics_enrollments__notesscoremeasures') (Id,EnrollmentId,AliasId,DomainId,NotesCount,MeasureNotesCount,DistinctCenterMeasureCount,DistinctScoreMeasureCount,IEPDomainCount,DistinctIEPDomainCount,DistinctIEPRatingCount,IsDeleted,CreateAtUtc)
+SELECT Id,EnrollmentId,AliasId,DomainId,NotesCount,MeasureNotesCount,DistinctCenterMeasureCount,DistinctScoreMeasureCount,IEPDomainCount,DistinctIEPDomainCount,DistinctIEPRatingCount,IsDeleted,CreateAtUtc from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.statistics_enrollments__notesscoremeasures;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.translations_translation');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.translations_translation') (Key,Translation,Original,CreateAtUtc,Lang,Id,IsDeleted)
+ SELECT Key,Translation,Original,CreateAtUtc,Lang,Id,IsDeleted from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.translations_translation;
+GO
+delete OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.users_metadata');
+GO
+insert OPENQUERY([MYSQL-STAGE-STAGE],'select from LearningGenieDb.users_metadata') (MetaKey,MetaValue,Id,UserId)
+ SELECT MetaKey,MetaValue,Id,UserId from [STAGE.RDS.LEARNING-GENIE.COM].LearningGenieDb.dbo.users_metadata;
+GO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
