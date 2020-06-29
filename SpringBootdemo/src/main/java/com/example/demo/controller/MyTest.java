@@ -20,7 +20,7 @@ public class MyTest {
     @ApiOperation("fadsfa")
     @RequestMapping(method = RequestMethod.DELETE)
     public String delete () {
-        System.out.println("修改的测试");
+        System.out.println("修改的测试数据");
         return "myfds";
     }
 
